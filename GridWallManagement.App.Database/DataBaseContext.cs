@@ -10,6 +10,7 @@ namespace GridWallManagement.App.Database.DBContexts
 
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         { }
-        public DbSet<ApplicationUserLog> ApplicationUserLogs { get; set; }
+
+        public DbSet<UserLicense> UserLicenses { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GridWallManagement.App.Database.Entities
 {
-    public class ApplicationUserLog
+    public class UserLicense
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -15,22 +15,18 @@ namespace GridWallManagement.App.Database.Entities
 
         public DateTime? ModifiedDate { get; set; }
 
-        [Required]
         [MaxLength(45)]
         public string PublicIPAddress { get; set; }
 
-        [Required]
         [MaxLength(45)]
         public string LocalIPAddress { get; set; }
-
-        public DateTime StartedTime { get; set; } = DateTime.UtcNow;
-
-        public bool IsStarted { get; set; } = false;
-
-        public bool IsStopped { get; set; } = false;
-
-        public DateTime? StoppedTime { get; set; }
-
-        public string? ErrorMessage { get; set; }
+        
+        public string LicenseKey { get; set; } = string.Empty;
+        
+        public DateTime RegisteredTime { get; set; } = DateTime.UtcNow;
+        
+        public DateTime? ExpirationTime { get; set; }
+        
+        public string? DeviceInfo { get; set; }
     }
 }

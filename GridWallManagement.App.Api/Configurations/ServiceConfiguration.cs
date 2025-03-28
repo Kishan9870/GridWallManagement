@@ -90,7 +90,7 @@ namespace GridWallManagement.App.Api.Configurations
         private static void ConfigureDatabase(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DataBaseContext>(options =>
-                options.UseMySql(configuration["DatabaseConnection:Connection"], new MySqlServerVersion(new Version(8, 0, 21))));
+                options.UseMySql(configuration["DatabaseConnection:ConnectionString"], new MySqlServerVersion(new Version(8, 0, 21))));
         }
     }
 

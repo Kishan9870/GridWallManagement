@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GridWallManagement.App.Database.Entities;
 
 namespace GridWallManagement.App.Models
 {
@@ -19,7 +20,7 @@ namespace GridWallManagement.App.Models
 
         private void ConfigureMappings()
         {
-           
+            CreateMap<UserLicense, UserLicenseResponse>().ReverseMap();
         }
     }
 }

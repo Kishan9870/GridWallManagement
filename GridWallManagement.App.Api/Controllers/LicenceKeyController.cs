@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using GridWallManagement.App.Api.Controllers;
+using GridWallManagement.App.Database.Entities;
+using GridWallManagement.App.Models.Request;
 using GridWallManagement.App.Services.Abstract;
 using GridWallManagement.App.Services.Common;
 using Microsoft.AspNetCore.Mvc;
@@ -20,18 +22,12 @@ namespace GridWallManagement.App.Api.Controllers
         }
 
         /// <summary>
-        /// Demo
+        /// Get user licences
         /// </summary>
+        /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPost("Demo")]
-        public async Task<ResponseBase<string>> Demo()
-        {
-
-
-            //var response = await _licenceKeyService.Authenticate(request, IpAddress(), cancellationToken);
-
-            
-            return null;
-        }
+        [HttpGet("get-user-licenses")]
+        public async Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync([FromQuery] GetUserLicensesRequest request)
+            => await _licenceKeyService.GetUserLicensesAsync(request);
     }
 }
