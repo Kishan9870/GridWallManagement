@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridWallManagement.App.Api", "GridWallManagement.App.Api\GridWallManagement.App.Api.csproj", "{2D993ACD-5A85-449C-B164-5DC2D8F5682C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridWallManagement.App.Database", "GridWallManagement.App.Database\GridWallManagement.App.Database.csproj", "{B488B56A-1887-4259-9EEB-7A2627D78B7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridWallManagement.App.Repository", "GridWallManagement.App.Repository\GridWallManagement.App.Repository.csproj", "{5B88835F-059C-4F70-90C3-A7EBFC3B7924}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridWallManagement.App.Services", "GridWallManagement.App.Services\GridWallManagement.App.Services.csproj", "{BE8F2402-0C12-46A0-ABA7-BC73147E927B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridWallManagement.App.Models", "GridWallManagement.App.Models\GridWallManagement.App.Models.csproj", "{6492A3BB-6043-43B7-AA01-CE039B698889}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D993ACD-5A85-449C-B164-5DC2D8F5682C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D993ACD-5A85-449C-B164-5DC2D8F5682C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D993ACD-5A85-449C-B164-5DC2D8F5682C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D993ACD-5A85-449C-B164-5DC2D8F5682C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B488B56A-1887-4259-9EEB-7A2627D78B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B488B56A-1887-4259-9EEB-7A2627D78B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B488B56A-1887-4259-9EEB-7A2627D78B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B488B56A-1887-4259-9EEB-7A2627D78B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B88835F-059C-4F70-90C3-A7EBFC3B7924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B88835F-059C-4F70-90C3-A7EBFC3B7924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B88835F-059C-4F70-90C3-A7EBFC3B7924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B88835F-059C-4F70-90C3-A7EBFC3B7924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE8F2402-0C12-46A0-ABA7-BC73147E927B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE8F2402-0C12-46A0-ABA7-BC73147E927B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE8F2402-0C12-46A0-ABA7-BC73147E927B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE8F2402-0C12-46A0-ABA7-BC73147E927B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6492A3BB-6043-43B7-AA01-CE039B698889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6492A3BB-6043-43B7-AA01-CE039B698889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6492A3BB-6043-43B7-AA01-CE039B698889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6492A3BB-6043-43B7-AA01-CE039B698889}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA9BB6B2-093F-4FBE-A02C-8A656A8C3B1C}
+	EndGlobalSection
+EndGlobal
