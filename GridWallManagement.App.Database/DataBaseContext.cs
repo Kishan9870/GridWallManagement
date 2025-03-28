@@ -1,7 +1,7 @@
 ﻿using GridWallManagement.App.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GridWall.App.Database.DBContexts
+namespace GridWallManagement.App.Database.DBContexts
 {
     public class DataBaseContext : DbContext
     {

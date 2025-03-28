@@ -1,4 +1,4 @@
-﻿using GridWall.App.Database.DBContexts;
+﻿using GridWallManagement.App.Database.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

@@ -4,7 +4,7 @@ using GridWallManagement.App.Services.Abstract;
 using GridWallManagement.App.Services.Common;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GridWall.App.Api.Controllers
+namespace GridWallManagement.App.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
