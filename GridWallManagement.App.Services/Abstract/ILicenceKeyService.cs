@@ -9,5 +9,7 @@ namespace GridWallManagement.App.Services.Abstract
         Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync(GetUserLicensesRequest request);
 
         Task<ResponseBase<bool>> ValidateLicenseKey(ValidateLicenseKeyRequest request);
+
+        Task<ResponseBase<UserLicenseResponse>> RegisterUserLicence(RegisterUserLicenceRequest request);
     }
 }

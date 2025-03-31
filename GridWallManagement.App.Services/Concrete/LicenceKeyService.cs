@@ -28,7 +28,7 @@ namespace GridWallManagement.App.Services.Concrete
             _config = config;
             _mapper = mapper;
             _encryptionKey = _config.GetSection("Encryption:Key").Value;
-            _companyName = _config.GetSection("Encryption:Comapny").Value;
+            _companyName = _config.GetSection("Encryption:Company").Value;
         }
 
         public async Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync(GetUserLicensesRequest request)
@@ -37,6 +37,7 @@ namespace GridWallManagement.App.Services.Concrete
             {
                 var userLicenses = await _userLicenseRepository.GetQueryable()
                                                                .Where(x => x.IsActive)
+                                                                    .Include(x => x.Renewals)
                                                                .GetPage<UserLicenseResponse, UserLicense>(request, this._mapper)
                                                                .ToListAsync();
 
@@ -62,7 +63,7 @@ namespace GridWallManagement.App.Services.Concrete
                                                               .FirstOrDefaultAsync();
 
                 if (userLicense != null)
-                    throw new Exception("License key already exists with another user.");
+                    throw new Exception("License key already used.");
 
                 string decryptedData = Decrypt(request.Key);
 
@@ -81,6 +82,59 @@ namespace GridWallManagement.App.Services.Concrete
             catch (Exception ex)
             {
                 var result = new ResponseBase<bool>(false) { ResponseStatusCode = System.Net.HttpStatusCode.BadRequest };
+                result.AddExceptionLog(ex);
+                return result;
+            }
+        }
+
+        public async Task<ResponseBase<UserLicenseResponse>> RegisterUserLicence(RegisterUserLicenceRequest request)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(request.Key))
+                    throw new KeyNotFoundException("License key is missing or invalid.");
+
+                var existingLicense = await _userLicenseRepository.GetQueryable()
+                                                                  .Where(x => x.LicenseKey == request.Key && x.IsActive)
+                                                                  .FirstOrDefaultAsync();
+
+                if (existingLicense != null)
+                    throw new Exception("License key already used.");
+
+                string decryptedData = Decrypt(request.Key);
+
+                if (string.IsNullOrEmpty(decryptedData) || !decryptedData.StartsWith(_companyName))
+                    throw new FormatException("Invalid license format or company mismatch.");
+
+                string[] parts = decryptedData.Split('-');
+                if (parts.Length < 2 || !parts[1].EndsWith("DAYS"))
+                    throw new FormatException("License does not contain a valid duration.");
+
+                if (!int.TryParse(parts[1].Replace("DAYS", ""), out int days))
+                    throw new FormatException("Invalid license duration format.");
+
+                var userLicense = new UserLicense()
+                {
+                    Id = Guid.NewGuid(),
+                    IsActive = true,
+                    CreatedDate = DateTime.UtcNow,
+                    PublicIPAddress = request.PublicIpAddress,
+                    LocalIPAddress = request.LocalIpAddress,
+                    MacAddress = request.MACAddress,
+                    LicenseKey = request.Key,
+                    RegisteredTime = request.RegisteredTime,
+                    ExpirationTime = request.RegisteredTime.AddDays(days),
+                    LicenseDuration = days,
+                    DeviceInfo = request.DeviceInfo
+                };
+
+                var createdLicense = await _userLicenseRepository.AddAsync(userLicense);
+
+                return new ResponseBase<UserLicenseResponse>(_mapper.Map<UserLicenseResponse>(createdLicense));
+            }
+            catch (Exception ex)
+            {
+                var result = new ResponseBase<UserLicenseResponse>(null) { ResponseStatusCode = System.Net.HttpStatusCode.BadRequest };
                 result.AddExceptionLog(ex);
                 return result;
             }

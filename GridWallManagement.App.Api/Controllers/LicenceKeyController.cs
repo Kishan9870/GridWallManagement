@@ -26,7 +26,7 @@ namespace GridWallManagement.App.Api.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [SwaggerIgnore]
+        //[SwaggerIgnore]
         [HttpGet("get-user-licenses")]
         public async Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync([FromQuery] GetUserLicensesRequest request)
             => await _licenceKeyService.GetUserLicensesAsync(request);
@@ -39,5 +39,14 @@ namespace GridWallManagement.App.Api.Controllers
         [HttpPost("validate-license-key")]
         public async Task<ResponseBase<bool>> ValidateLicenseKey([FromBody] ValidateLicenseKeyRequest request)
             => await _licenceKeyService.ValidateLicenseKey(request);
+
+        /// <summary>
+        /// Register user licence key 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost("register-user-licence")]
+        public async Task<ResponseBase<UserLicenseResponse>> RegisterUserLicence([FromBody] RegisterUserLicenceRequest request)
+            => await _licenceKeyService.RegisterUserLicence(request);
     }
 }

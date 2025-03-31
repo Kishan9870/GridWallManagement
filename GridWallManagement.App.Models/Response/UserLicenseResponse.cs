@@ -10,16 +10,22 @@
 
         public DateTime? ModifiedDate { get; set; }
 
-        public string PublicIPAddress { get; set; }
+        public string? PublicIPAddress { get; set; }
 
-        public string LocalIPAddress { get; set; }
-        
+        public string? LocalIPAddress { get; set; }
+
+        public string? MacAddress { get; set; }
+
         public string LicenseKey { get; set; } = string.Empty;
-        
+
         public DateTime RegisteredTime { get; set; } = DateTime.UtcNow;
-        
+
         public DateTime? ExpirationTime { get; set; }
-        
+
+        public int? LicenseDuration { get; set; }
+
         public string? DeviceInfo { get; set; }
+
+        public List<UserLicenseRenewalResponse> Renewals { get; set; }
     }
 }

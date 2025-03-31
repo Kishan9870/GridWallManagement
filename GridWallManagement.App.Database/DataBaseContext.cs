@@ -12,5 +12,6 @@ namespace GridWallManagement.App.Database.DBContexts
         { }
 
         public DbSet<UserLicense> UserLicenses { get; set; }
+        public DbSet<UserLicenseRenewal> UserLicenseRenewals { get; set; }
     }
 }

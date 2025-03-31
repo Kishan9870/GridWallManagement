@@ -21,6 +21,7 @@ namespace GridWallManagement.App.Models
         private void ConfigureMappings()
         {
             CreateMap<UserLicense, UserLicenseResponse>().ReverseMap();
+            CreateMap<UserLicenseRenewal, UserLicenseRenewalResponse>().ReverseMap();
         }
     }
 }
