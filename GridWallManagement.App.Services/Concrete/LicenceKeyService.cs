@@ -18,6 +18,7 @@ namespace GridWallManagement.App.Services.Concrete
         private readonly IMapper _mapper;
 
         private string _encryptionKey;
+        private string _companyName;
 
         public LicenceKeyService(IGenericRepository<UserLicense> userLicenseRepository,
                                  IConfiguration config,
@@ -26,7 +27,8 @@ namespace GridWallManagement.App.Services.Concrete
             _userLicenseRepository = userLicenseRepository;
             _config = config;
             _mapper = mapper;
-            _encryptionKey = _config.GetSection("EncryptionKey").Value;
+            _encryptionKey = _config.GetSection("Encryption:Key").Value;
+            _companyName = _config.GetSection("Encryption:Comapny").Value;
         }
 
         public async Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync(GetUserLicensesRequest request)
@@ -56,27 +58,23 @@ namespace GridWallManagement.App.Services.Concrete
                     throw new KeyNotFoundException("License key is missing or invalid.");
 
                 var userLicense = await _userLicenseRepository.GetQueryable()
-                                                              .Where(x => x.LicenseKey.Equals(request.Key)
-                                                                       && x.IsActive)
+                                                              .Where(x => x.LicenseKey == request.Key && x.IsActive)
                                                               .FirstOrDefaultAsync();
 
                 if (userLicense != null)
-                    throw new Exception("Licence key already exist with another user.");
-                
+                    throw new Exception("License key already exists with another user.");
 
-                if (!request.Key.Contains(":"))
-                    throw new FormatException("License key format is incorrect.");
+                string decryptedData = Decrypt(request.Key);
 
-                string[] keyParts = request.Key.Split(':');
+                if (string.IsNullOrEmpty(decryptedData) || !decryptedData.StartsWith(_companyName))
+                    throw new FormatException("Invalid license format or company mismatch.");
 
-                if (keyParts.Length < 2 || string.IsNullOrEmpty(keyParts[1]))
-                    throw new FormatException("Invalid license key format.");
+                string[] parts = decryptedData.Split('-');
+                if (parts.Length < 2 || !parts[1].EndsWith("DAYS"))
+                    throw new FormatException("License does not contain a valid duration.");
 
-                string encryptedPart = keyParts[1];
-                string decryptedData = Decrypt(encryptedPart);
-
-                if (!DateTime.TryParse(decryptedData, out DateTime expiryDate))
-                    throw new Exception("Invalid license key.");
+                if (!int.TryParse(parts[1].Replace("DAYS", ""), out int days))
+                    throw new FormatException("Invalid license duration format.");
 
                 return new ResponseBase<bool>(true);
             }
@@ -89,44 +87,34 @@ namespace GridWallManagement.App.Services.Concrete
         }
 
         #region Private Method
-        public string Decrypt(string encryptedText)
+        private string Decrypt(string encryptedText)
         {
-            try
+            byte[] keyBytes = Convert.FromBase64String(_encryptionKey);
+            byte[] encryptedBytes = Convert.FromBase64String(AdjustBase64String(encryptedText));
+
+            using (Aes aes = Aes.Create())
             {
-                // Normalize Base64 string
-                encryptedText = encryptedText.Replace("-", "+").Replace("_", "/").Replace("?", ":");
-                while (encryptedText.Length % 4 != 0) encryptedText += "=";
+                aes.Key = keyBytes;
+                byte[] iv = new byte[aes.BlockSize / 8];
+                Array.Copy(encryptedBytes, 0, iv, 0, iv.Length);
 
-                byte[] fullCipher = Convert.FromBase64String(encryptedText);
-                byte[] keyBytes = Convert.FromBase64String(_encryptionKey); 
+                aes.IV = iv;
 
-                using (Aes aes = Aes.Create())
+                using (var decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
+                using (var ms = new MemoryStream(encryptedBytes, iv.Length, encryptedBytes.Length - iv.Length))
+                using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                using (var reader = new StreamReader(cs))
                 {
-                    aes.Key = keyBytes;
-                    aes.Mode = CipherMode.CBC;
-                    aes.Padding = PaddingMode.PKCS7;
-
-                    byte[] iv = new byte[aes.BlockSize / 8];
-                    byte[] cipherText = new byte[fullCipher.Length - iv.Length];
-
-                    Array.Copy(fullCipher, iv, iv.Length);
-                    Array.Copy(fullCipher, iv.Length, cipherText, 0, cipherText.Length);
-
-                    aes.IV = iv;
-
-                    using (var decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
-                    using (var ms = new MemoryStream(cipherText))
-                    using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
-                    using (var reader = new StreamReader(cs))
-                    {
-                        return reader.ReadToEnd();
-                    }
+                    return reader.ReadToEnd();
                 }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Decryption failed.", ex);
-            }
+        }
+
+        private string AdjustBase64String(string input)
+        {
+            input = input.Replace("-", "+").Replace("_", "/");
+            while (input.Length % 4 != 0) input += "=";
+            return input;
         }
 
         #endregion
