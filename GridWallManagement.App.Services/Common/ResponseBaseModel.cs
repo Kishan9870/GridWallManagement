@@ -37,5 +37,6 @@ namespace GridWallManagement.App.Services.Common
                     AddExceptionLog(ex.InnerException);
             }
         }
+       
     }
 }

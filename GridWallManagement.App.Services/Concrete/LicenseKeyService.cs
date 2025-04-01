@@ -11,7 +11,7 @@ using System.Security.Cryptography;
 
 namespace GridWallManagement.App.Services.Concrete
 {
-    public class LicenceKeyService : ServiceBase, ILicenceKeyService
+    public class LicenseKeyService : ServiceBase, ILicenseKeyService
     {
         private readonly IGenericRepository<UserLicense> _userLicenseRepository;
         private readonly IConfiguration _config;
@@ -20,7 +20,7 @@ namespace GridWallManagement.App.Services.Concrete
         private string _encryptionKey;
         private string _companyName;
 
-        public LicenceKeyService(IGenericRepository<UserLicense> userLicenseRepository,
+        public LicenseKeyService(IGenericRepository<UserLicense> userLicenseRepository,
                                  IConfiguration config,
                                  IMapper mapper) : base(mapper)
         {
@@ -87,7 +87,7 @@ namespace GridWallManagement.App.Services.Concrete
             }
         }
 
-        public async Task<ResponseBase<UserLicenseResponse>> RegisterUserLicence(RegisterUserLicenceRequest request)
+        public async Task<ResponseBase<bool>> RegisterUserLicense(RegisterUserLicenseRequest request)
         {
             try
             {
@@ -113,6 +113,10 @@ namespace GridWallManagement.App.Services.Concrete
                 if (!int.TryParse(parts[1].Replace("DAYS", ""), out int days))
                     throw new FormatException("Invalid license duration format.");
 
+                if (string.IsNullOrEmpty(request.RegisteredTime) ||
+                 !DateTime.TryParse(request.RegisteredTime, out DateTime registrationDate))
+                    throw new FormatException("Invalid or missing registration date.");
+
                 var userLicense = new UserLicense()
                 {
                     Id = Guid.NewGuid(),
@@ -122,19 +126,21 @@ namespace GridWallManagement.App.Services.Concrete
                     LocalIPAddress = request.LocalIpAddress,
                     MacAddress = request.MACAddress,
                     LicenseKey = request.Key,
-                    RegisteredTime = request.RegisteredTime,
-                    ExpirationTime = request.RegisteredTime.AddDays(days),
+                    RegisteredTime = registrationDate,
+                    ExpirationTime = registrationDate.AddDays(days),
                     LicenseDuration = days,
                     DeviceInfo = request.DeviceInfo
                 };
 
                 var createdLicense = await _userLicenseRepository.AddAsync(userLicense);
+                if (createdLicense == null)
+                    throw new FormatException("Key not registerd.");
 
-                return new ResponseBase<UserLicenseResponse>(_mapper.Map<UserLicenseResponse>(createdLicense));
+                return new ResponseBase<bool>(true);
             }
             catch (Exception ex)
             {
-                var result = new ResponseBase<UserLicenseResponse>(null) { ResponseStatusCode = System.Net.HttpStatusCode.BadRequest };
+                var result = new ResponseBase<bool>(false) { ResponseStatusCode = System.Net.HttpStatusCode.BadRequest };
                 result.AddExceptionLog(ex);
                 return result;
             }

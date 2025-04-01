@@ -9,7 +9,7 @@ namespace GridWallManagement.App.Services.Common
     {
         public static IServiceCollection RegisterService(this IServiceCollection services)
         {
-            services.AddScoped<ILicenceKeyService, LicenceKeyService>();
+            services.AddScoped<ILicenseKeyService, LicenseKeyService>();
 
             services.RegisterRepository();
             return services;
