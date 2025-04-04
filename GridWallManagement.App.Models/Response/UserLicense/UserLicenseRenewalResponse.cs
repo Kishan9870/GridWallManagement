@@ -1,4 +1,4 @@
-﻿namespace GridWallManagement.App.Database.Entities
+﻿namespace GridWallManagement.App.Models.Response.UserLicense
 {
     public class UserLicenseRenewalResponse
     {

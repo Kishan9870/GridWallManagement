@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using GridWallManagement.App.Database.Entities;
-using GridWallManagement.App.Models.Request;
+using GridWallManagement.App.Models.Request.LicenseKey;
+using GridWallManagement.App.Models.Request.UserLicense;
+using GridWallManagement.App.Models.Response.LicenseKey;
 using GridWallManagement.App.Repository.Common;
 using GridWallManagement.App.Service.Common;
 using GridWallManagement.App.Services.Abstract;
@@ -31,21 +33,30 @@ namespace GridWallManagement.App.Services.Concrete
             _companyName = _config.GetSection("Encryption:Company").Value;
         }
 
-        public async Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync(GetUserLicensesRequest request)
+        public async Task<ResponseBase<GenerateLicenseKeyResponse>> GenerateLicenseKeyAsync(GenerateLicenseKeyRequest request)
         {
             try
             {
-                var userLicenses = await _userLicenseRepository.GetQueryable()
-                                                               .Where(x => x.IsActive)
-                                                                    .Include(x => x.Renewals)
-                                                               .GetPage<UserLicenseResponse, UserLicense>(request, this._mapper)
-                                                               .ToListAsync();
+                if (request.Days <= 0)
+                    throw new KeyNotFoundException("Invalid request.");
 
-                return new ResponseBase<List<UserLicenseResponse>>(_mapper.Map<List<UserLicenseResponse>>(userLicenses));
+                string licenseKey = GenerateLicenseKey(request.Days);
+
+                if (string.IsNullOrEmpty(licenseKey))
+                    throw new KeyNotFoundException("License key not generated.");
+
+                var licenseKeyResponse = new GenerateLicenseKeyResponse()
+                {
+                    LicenseKey = licenseKey,
+                    //GeneratedOn = DateTime.UtcNow,
+                    //ValidityInDays = request.Days,
+                };
+
+                return new ResponseBase<GenerateLicenseKeyResponse>(licenseKeyResponse);
             }
             catch (Exception ex)
             {
-                var result = new ResponseBase<List<UserLicenseResponse>>(null);
+                var result = new ResponseBase<GenerateLicenseKeyResponse>(null) { ResponseStatusCode = System.Net.HttpStatusCode.BadRequest };
                 result.AddExceptionLog(ex);
                 return result;
             }
@@ -175,6 +186,42 @@ namespace GridWallManagement.App.Services.Concrete
             input = input.Replace("-", "+").Replace("_", "/");
             while (input.Length % 4 != 0) input += "=";
             return input;
+        }
+
+        private string GenerateLicenseKey(int days)
+        {
+            string licenseInfo = $"{_companyName}-{days}DAYS";
+            string encryptedLicense = Encrypt(licenseInfo);
+            return encryptedLicense;
+        }
+
+        private string Encrypt(string plainText)
+        {
+            byte[] keyBytes = Convert.FromBase64String(_encryptionKey);
+
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = keyBytes;
+                aes.GenerateIV();
+                byte[] iv = aes.IV;
+
+                using (var encryptor = aes.CreateEncryptor(aes.Key, aes.IV))
+                using (var ms = new MemoryStream())
+                {
+                    ms.Write(iv, 0, iv.Length);
+                    using (var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                    using (var writer = new StreamWriter(cs))
+                    {
+                        writer.Write(plainText);
+                    }
+
+                    byte[] encryptedData = ms.ToArray();
+                    return Convert.ToBase64String(encryptedData)
+                                  .Replace("+", "-")
+                                  .Replace("/", "_")
+                                  .Replace("=", "");
+                }
+            }
         }
 
         #endregion

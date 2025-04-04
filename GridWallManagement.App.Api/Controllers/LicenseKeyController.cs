@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using GridWallManagement.App.Database.Entities;
-using GridWallManagement.App.Models.Request;
+using GridWallManagement.App.Models.Request.LicenseKey;
+using GridWallManagement.App.Models.Request.UserLicense;
+using GridWallManagement.App.Models.Response.LicenseKey;
 using GridWallManagement.App.Services.Abstract;
 using GridWallManagement.App.Services.Common;
 using Microsoft.AspNetCore.Mvc;
@@ -21,14 +23,13 @@ namespace GridWallManagement.App.Api.Controllers
         }
 
         /// <summary>
-        /// Get user licenses
+        /// Generate new licence key
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        //[SwaggerIgnore]
-        [HttpGet("get-user-licenses")]
-        public async Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync([FromQuery] GetUserLicensesRequest request)
-            => await _licenseKeyService.GetUserLicensesAsync(request);
+        [HttpGet("generate-license-key")]
+        public async Task<ResponseBase<GenerateLicenseKeyResponse>> GenerateLicenseKeyAsync([FromQuery] GenerateLicenseKeyRequest request)
+            => await _licenseKeyService.GenerateLicenseKeyAsync(request);
 
         /// <summary>
         /// Validate license key

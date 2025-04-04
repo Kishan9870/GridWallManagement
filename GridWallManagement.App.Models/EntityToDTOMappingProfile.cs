@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GridWallManagement.App.Database.Entities;
+using GridWallManagement.App.Models.Response.UserLicense;
 
 namespace GridWallManagement.App.Models
 {
