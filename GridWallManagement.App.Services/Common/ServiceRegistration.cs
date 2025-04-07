@@ -11,6 +11,8 @@ namespace GridWallManagement.App.Services.Common
         {
             services.AddScoped<ILicenseKeyService, LicenseKeyService>();
             services.AddScoped<IUserLicenseService, UserLicenseService>();
+            services.AddScoped<IRolesService, RolesService>();
+            services.AddScoped<IUsersService, UsersService>();
 
             services.RegisterRepository();
             return services;
