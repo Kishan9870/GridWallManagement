@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using GridWallManagement.App.Models.Request.Role;
 using GridWallManagement.App.Models.Request.User;
-using GridWallManagement.App.Models.Response.Role;
 using GridWallManagement.App.Models.Response.User;
 using GridWallManagement.App.Services.Abstract;
 using GridWallManagement.App.Services.Common;

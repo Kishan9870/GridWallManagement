@@ -1,14 +1,17 @@
 ﻿using AutoMapper;
+using GridWallManagement.App.Services.Abstract;
 
-namespace GridWallManagement.App.Service.Common
+namespace GridWallManagement.App.Services.Common
 {
     public class ServiceBase
     {
-        public readonly IMapper Mapper;
+        public readonly IMapper _mapper;
+        public readonly IUserContext _userContext;
 
-        public ServiceBase(IMapper _mapper)
+        public ServiceBase(IMapper _mapper, IUserContext _userContext)
         {
-            this.Mapper = _mapper;
+            this._mapper = _mapper;
+            this._userContext = _userContext;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace GridWallManagement.App.Database.DBContexts
 
         public DbSet<Roles> Roles { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<UserLicense> UserLicenses { get; set; }
         public DbSet<UserLicenseRenewal> UserLicenseRenewals { get; set; }
     }

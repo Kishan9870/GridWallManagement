@@ -4,7 +4,6 @@ using GridWallManagement.App.Models.Request.LicenseKey;
 using GridWallManagement.App.Models.Request.UserLicense;
 using GridWallManagement.App.Models.Response.LicenseKey;
 using GridWallManagement.App.Repository.Common;
-using GridWallManagement.App.Service.Common;
 using GridWallManagement.App.Services.Abstract;
 using GridWallManagement.App.Services.Common;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +23,8 @@ namespace GridWallManagement.App.Services.Concrete
 
         public LicenseKeyService(IGenericRepository<UserLicense> userLicenseRepository,
                                  IConfiguration config,
-                                 IMapper mapper) : base(mapper)
+                                 IMapper mapper,
+                                 IUserContext userContext) : base(mapper, userContext)
         {
             _userLicenseRepository = userLicenseRepository;
             _config = config;

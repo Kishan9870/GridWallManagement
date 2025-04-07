@@ -17,5 +17,8 @@ namespace GridWallManagement.App.Database.Entities
 
         [ForeignKey(nameof(RoleId))]
         public virtual Roles Roles { get; set; }
+
+        [InverseProperty(nameof(RefreshToken.User))]
+        public virtual ICollection<RefreshToken> RefreshTokens { get; set; }
     }
 }

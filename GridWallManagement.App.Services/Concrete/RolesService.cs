@@ -2,9 +2,7 @@
 using GridWallManagement.App.Database.Entities;
 using GridWallManagement.App.Models.Request.Role;
 using GridWallManagement.App.Models.Response.Role;
-using GridWallManagement.App.Models.Response.UserLicense;
 using GridWallManagement.App.Repository.Common;
-using GridWallManagement.App.Service.Common;
 using GridWallManagement.App.Services.Abstract;
 using GridWallManagement.App.Services.Common;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +18,8 @@ namespace GridWallManagement.App.Services.Concrete
 
         public RolesService(IGenericRepository<Roles> rolesRepository,
                             IConfiguration config,
-                            IMapper mapper) : base(mapper)
+                            IMapper mapper,
+                            IUserContext userContext) : base(mapper, userContext)
         {
             _rolesRepository = rolesRepository;
             _config = config;
