@@ -23,7 +23,6 @@ namespace GridWallManagement.App.Services.Concrete
         private readonly IGenericRepository<Users> _usersRepository;
         private readonly IGenericRepository<RefreshToken> _refreshTokenRepository;
         private readonly IConfiguration _config;
-        private readonly IMapper _mapper;
         AppSettingsConfiguration AppSettingsConfiguration = new AppSettingsConfiguration();
 
         public AccountService(IGenericRepository<Users> usersRepository,
@@ -35,7 +34,6 @@ namespace GridWallManagement.App.Services.Concrete
             _usersRepository = usersRepository;
             _refreshTokenRepository = refreshTokenRepository;
             _config = config;
-            _mapper = mapper;
             AppSettingsConfiguration.Secret = _config.GetSection("AppSettings:Secret").Value;
             AppSettingsConfiguration.RefreshTokenTTL = Convert.ToInt32(_config.GetSection("AppSettings:RefreshTokenTTL").Value);
         }
