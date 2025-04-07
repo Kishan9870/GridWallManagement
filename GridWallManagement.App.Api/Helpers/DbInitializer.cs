@@ -18,11 +18,11 @@ namespace GridWallManagement.App.Api.Helpers
             var masterUserId = Guid.NewGuid().ToString();
 
             if (!_context.Roles.Any(m => m.Name == UserRoles.SUPER_ADMIN))
-                _context.Roles.Add(new Roles { Name = UserRoles.SUPER_ADMIN, Code = "SUPER_ADMIN", DisplayName = "Super Administrator", CreatedBy = masterUserId, CreatedDate = DateTime.UtcNow });
+                _context.Roles.Add(new Roles { Name = UserRoles.SUPER_ADMIN, Code = "SUPER_ADMIN", DisplayName = "Super Administrator", IsActive = true, CreatedBy = masterUserId, CreatedDate = DateTime.UtcNow });
             if (!_context.Roles.Any(m => m.Name == UserRoles.ADMIN))
-                _context.Roles.Add(new Roles { Name = UserRoles.ADMIN, Code = "ADMIN", DisplayName = "Administrator", CreatedBy = masterUserId, CreatedDate = DateTime.UtcNow });
+                _context.Roles.Add(new Roles { Name = UserRoles.ADMIN, Code = "ADMIN", DisplayName = "Administrator", IsActive = true, CreatedBy = masterUserId, CreatedDate = DateTime.UtcNow });
             if (!_context.Roles.Any(m => m.Name == UserRoles.USER))
-                _context.Roles.Add(new Roles { Name = UserRoles.USER, Code = "USER", DisplayName = "Standard User", CreatedBy = masterUserId, CreatedDate = DateTime.UtcNow });
+                _context.Roles.Add(new Roles { Name = UserRoles.USER, Code = "USER", DisplayName = "Standard User", IsActive = true, CreatedBy = masterUserId, CreatedDate = DateTime.UtcNow });
 
             _context.SaveChanges();
 

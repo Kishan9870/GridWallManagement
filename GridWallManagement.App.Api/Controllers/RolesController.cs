@@ -27,7 +27,7 @@ namespace GridWallManagement.App.Api.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpGet("get-user-licenses")]
+        [HttpGet("get-async")]
         public async Task<ResponseBase<List<RolesResponse>>> GetAsync([FromQuery] GetRolesRequest request)
             => await _rolesService.GetAsync(request);
     }

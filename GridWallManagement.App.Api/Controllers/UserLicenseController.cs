@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using GridWallManagement.App.Api.Infrastructure.Attributes;
+using GridWallManagement.App.Models.Common;
 using GridWallManagement.App.Models.Request.UserLicense;
 using GridWallManagement.App.Models.Response.UserLicense;
 using GridWallManagement.App.Services.Abstract;
@@ -26,6 +28,7 @@ namespace GridWallManagement.App.Api.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpGet("get-user-licenses")]
+        [Authorize(UserRoles.SUPER_ADMIN)]
         public async Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync([FromQuery] GetUserLicensesRequest request)
             => await _userLicenseService.GetUserLicensesAsync(request);
     }

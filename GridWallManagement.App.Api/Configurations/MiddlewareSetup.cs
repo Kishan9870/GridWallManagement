@@ -1,4 +1,6 @@
-﻿namespace GridWallManagement.App.Api.Configurations
+﻿using GridWallManagement.App.Api.Middleware;
+
+namespace GridWallManagement.App.Api.Configurations
 {
     public static class MiddlewareSetup
     {
@@ -19,6 +21,7 @@
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

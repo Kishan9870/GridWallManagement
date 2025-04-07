@@ -31,9 +31,9 @@ namespace GridWallManagement.App.Services.Concrete
             try
             {
                 var roles = await _rolesRepository.GetQueryable()
-                                                         .Where(x => x.IsActive)
-                                                         .GetPage<RolesResponse, Roles>(request, this._mapper)
-                                                         .ToListAsync();
+                                                  .Where(x => x.IsActive)
+                                                  .GetPage<RolesResponse, Roles>(request, this._mapper)
+                                                  .ToListAsync();
 
                 return new ResponseBase<List<RolesResponse>>(_mapper.Map<List<RolesResponse>>(roles));
             }
