@@ -64,15 +64,11 @@ namespace GridWallManagement.App.Services.Concrete
                     // save changes to db
                     await _refreshTokenRepository.AddAsync(refreshToken);
 
-                    //get users role
-                    var role = _mapper.Map<RolesResponse>(user.Roles);
-
                     await _usersRepository.UpdateAsync(user);
 
                     var authenticateResponse = _mapper.Map<AuthenticateResponse>(user);
                     authenticateResponse.JwtToken = jwtToken;
                     authenticateResponse.RefreshToken = refreshToken.Token;
-                    authenticateResponse.Roles = role;
 
                     result = authenticateResponse;
                 }
