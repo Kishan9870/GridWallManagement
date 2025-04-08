@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridWallManagement.App.Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridWallManagement.App.Models", "GridWallManagement.App.Models\GridWallManagement.App.Models.csproj", "{6492A3BB-6043-43B7-AA01-CE039B698889}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Presentation", "1.Presentation", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Core", "2. Core", "{62FD87F3-A49A-41B1-AC89-2D577527DB15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +46,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D993ACD-5A85-449C-B164-5DC2D8F5682C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B488B56A-1887-4259-9EEB-7A2627D78B7A} = {62FD87F3-A49A-41B1-AC89-2D577527DB15}
+		{5B88835F-059C-4F70-90C3-A7EBFC3B7924} = {62FD87F3-A49A-41B1-AC89-2D577527DB15}
+		{BE8F2402-0C12-46A0-ABA7-BC73147E927B} = {62FD87F3-A49A-41B1-AC89-2D577527DB15}
+		{6492A3BB-6043-43B7-AA01-CE039B698889} = {62FD87F3-A49A-41B1-AC89-2D577527DB15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA9BB6B2-093F-4FBE-A02C-8A656A8C3B1C}
