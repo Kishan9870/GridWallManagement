@@ -10,6 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxSonnerToaster } from 'ngx-sonner';
 import { ResponsiveHelperComponent } from './shared/components/responsive-helper/responsive-helper.component';
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, ResponsiveHelperComponent],
@@ -20,6 +22,8 @@ import { ResponsiveHelperComponent } from './shared/components/responsive-helper
     MatCardModule,
     MatButtonModule,
     NgxSonnerToaster,
+    AuthModule,
+    SharedModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
