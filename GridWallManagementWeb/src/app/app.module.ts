@@ -8,15 +8,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { NgxSonnerToaster } from 'ngx-sonner';
+import { ResponsiveHelperComponent } from './shared/components/responsive-helper/responsive-helper.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ResponsiveHelperComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,
+    NgxSonnerToaster,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

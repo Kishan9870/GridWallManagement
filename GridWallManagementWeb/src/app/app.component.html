@@ -1,14 +1,7 @@
-<div class="flex justify-center items-center min-h-screen bg-gray-100">
-  <mat-card class="w-full max-w-md p-6">
-    <h1 class="text-3xl font-semibold text-center text-indigo-600 mb-4">
-      Angular + Tailwind + Material
-    </h1>
-    <p class="text-gray-700 text-center mb-6">
-      This is a demo combining Tailwind CSS utility classes with Angular
-      Material components.
-    </p>
-    <div class="flex justify-center">
-      <button mat-raised-button color="primary">Click Me</button>
-    </div>
-  </mat-card>
+<div>
+  <router-outlet></router-outlet>
+  <app-responsive-helper></app-responsive-helper>
+  <ngx-sonner-toaster
+    [theme]="themeService.isDark ? 'dark' : 'light'"
+  ></ngx-sonner-toaster>
 </div>
