@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url(../public/css/argon-dashboard-tailwind.css);
+@import url(../public/css/argon-dashboard-tailwind.min.css);
+@import url(../public/css/choices.css);
+@import url(../public/css/datatable.css);
+@import url(../public/css/dropzone.css);
+@import url(../public/css/editor-quill.css);
+@import url(../public/css/flatpickr.css);
+@import url(../public/css/full-calendar.css);
+@import url(../public/css/kanban.css);
+@import url(../public/css/leaflet.css);
+@import url(../public/css/noui-slider.css);
+@import url(../public/css/nucleo-icons.css);
+@import url(../public/css/nucleo-svg.css);
+@import url(../public/css/perfect-scrollbar.css);
+@import url(../public/css/photo-swipe.css);
+@import url(../public/css/sweet-alerts.css);
+@import url(../public/css/tooltips.css);
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.h-100vh {
+  height: 100vh;
+}
