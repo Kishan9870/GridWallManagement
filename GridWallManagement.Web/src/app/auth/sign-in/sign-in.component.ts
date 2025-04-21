@@ -4,6 +4,7 @@ import { AuthenticateRequest } from '../../shared/models/request/account/Authent
 import { AccountService } from '../shared/services/account.service';
 import { AuthenticateResponse } from '../../shared/models/response/account/AuthenticateResponse';
 import { ResponseBase } from '../../shared/models/common/ResponseBase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +16,8 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class SignInComponent implements OnInit {
           sessionStorage.setItem('isLoggedIn', 'true');
           // alert('Login successful!');
           // this.toasterService.success('Welcome!!!');
-          // this.router.navigateByUrl('/web');
+          this.router.navigateByUrl('/core');
         } else {
           // this.toasterService.error('Login fail!');
         }
