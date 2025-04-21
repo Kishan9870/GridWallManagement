@@ -25,7 +25,7 @@ public class Program
         
         var app = builder.Build();
         DatabaseInitializer.Initialize(app);
-        MiddlewareSetup.Configure(app);
+        MiddlewareSetup.Configure(app, configuration);
 
         return app;
     }

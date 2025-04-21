@@ -30,7 +30,6 @@ export class SignInComponent implements OnInit {
   }
 
   signIn() {
-    debugger;
     if (this.signInForm.invalid) {
       Object.keys(this.signInForm.controls).forEach((field) => {
         const control = this.signInForm.get(field);
@@ -42,6 +41,8 @@ export class SignInComponent implements OnInit {
     }
 
     const request = new AuthenticateRequest();
+    request.email = this.signInForm.get('email')?.value;
+    request.password = this.signInForm.get('password')?.value;
 
     this.accountService.authenticate(request).subscribe(
       (response: ResponseBase<AuthenticateResponse>) => {

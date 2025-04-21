@@ -18,7 +18,7 @@ export class AccountService {
     request: AuthenticateRequest
   ): Observable<ResponseBase<AuthenticateResponse>> {
     return this.httpClient.post<ResponseBase<AuthenticateResponse>>(
-      AuthApi.authentication,
+      AuthApi.authenticate,
       request
     );
   }

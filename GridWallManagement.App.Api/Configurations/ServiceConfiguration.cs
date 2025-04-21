@@ -19,9 +19,17 @@ namespace GridWallManagement.App.Api.Configurations
             ConfigureDatabase(services, configuration);
             services.AddHttpContextAccessor();
             services.RegisterService();
+
+            var myAllowSpecificOrigins = configuration.GetSection("MyAllowSpecificOrigins").Value;
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowOrigin", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+                options.AddPolicy(name: myAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.AllowAnyHeader();
+                          builder.AllowAnyMethod();
+                          builder.AllowAnyOrigin();
+                      });
             });
 
             services.AddAutoMapper(cfg =>

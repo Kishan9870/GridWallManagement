@@ -1,3 +1,3 @@
 export class AuthApi {
-  static readonly authentication = 'Account/authentication';
+  static readonly authenticate = 'Account/authenticate';
 }

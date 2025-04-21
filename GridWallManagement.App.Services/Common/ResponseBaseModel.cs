@@ -18,6 +18,12 @@ namespace GridWallManagement.App.Services.Common
 
         public HttpStatusCode ResponseStatusCode { get; set; } = HttpStatusCode.OK;
 
+        public int ResponseStatusCodeValue
+        {
+            get => (int)ResponseStatusCode;
+            set => ResponseStatusCode = (HttpStatusCode)value;
+        }
+
         public void AddExceptionLog(Exception ex)
         {
             if (ResponseStatusCode == HttpStatusCode.OK)
