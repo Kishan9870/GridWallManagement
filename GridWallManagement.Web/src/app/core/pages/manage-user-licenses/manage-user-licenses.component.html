@@ -1,1 +1,462 @@
-<p>manage-user-licenses works!</p>
+<div class="container p-0">
+  <div
+    class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border"
+  >
+    <div
+      class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0"
+    >
+      <div class="lg:flex">
+        <div>
+          <h5 class="mb-0 dark:text-white">All Products</h5>
+          <p class="mb-0 text-sm leading-normal">
+            A lightweight, extendable, dependency-free javascript HTML table
+            plugin.
+          </p>
+        </div>
+        <div class="my-auto mt-6 ml-auto lg:mt-0">
+          <div class="my-auto ml-auto">
+            <button
+              type="button"
+              class="inline-block px-8 py-2 m-0 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer tracking-tight-rem bg-gradient-to-tl from-blue-500 to-violet-500 bg-150 bg-x-25 hover:-translate-y-px active:-translate-y-px active:opacity-85"
+            >
+              +&nbsp; New Product
+            </button>
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#import"
+              class="inline-block px-8 py-2 text-xs font-bold leading-normal text-center text-blue-500 align-middle transition-all ease-in bg-transparent border border-blue-500 border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 tracking-tight-rem bg-150 bg-x-25 hover:-translate-y-px active:-translate-y-px active:shadow-xs hover:text-blue-500 hover:opacity-75 hover:shadow-none active:scale-100 active:border-blue-500 active:bg-blue-500 active:text-white hover:active:border-blue-500 hover:active:bg-transparent hover:active:text-blue-500 hover:active:opacity-75"
+            >
+              Import
+            </button>
+
+            <!-- modal  -->
+            <div
+              class="fixed top-0 left-0 hidden w-full h-full overflow-x-hidden overflow-y-auto transition-opacity ease-linear opacity-0 z-sticky outline-0 ps"
+              id="import"
+              aria-hidden="true"
+            >
+              <div
+                class="relative w-auto m-2 transition-transform duration-300 ease-out pointer-events-none sm:m-7 sm:max-w-125 sm:mx-auto lg:mt-48 -translate-y-13"
+              >
+                <div
+                  class="relative flex flex-col w-full bg-white border border-solid pointer-events-auto dark:bg-slate-850 bg-clip-padding border-black/20 rounded-xl outline-0"
+                >
+                  <div
+                    class="flex items-center justify-between p-4 border-b border-solid shrink-0 border-slate-100 rounded-t-xl"
+                  >
+                    <h5
+                      class="mb-0 leading-normal dark:text-white"
+                      id="ModalLabel"
+                    >
+                      Import CSV
+                    </h5>
+                    <i class="ml-4 fas fa-upload"></i>
+                    <button
+                      type="button"
+                      data-toggle="modal"
+                      data-target="#import"
+                      class="fa fa-close w-4 h-4 ml-auto box-content p-2 text-black dark:text-white border-0 rounded-1.5 opacity-50 cursor-pointer -m-2"
+                      data-dismiss="modal"
+                    ></button>
+                  </div>
+                  <div class="relative flex-auto p-4">
+                    <p>You can browse your computer for a file.</p>
+                    <input
+                      type="text"
+                      placeholder="Browse file..."
+                      class="dark:bg-slate-850 mb-4 focus:shadow-primary-outline dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"
+                    />
+                    <div class="min-h-6 pl-7 mb-0.5 block">
+                      <input
+                        class="w-5 h-5 ease -ml-7 rounded-1.4 checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-250 after:ease-in-out duration-250 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-150 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
+                        type="checkbox"
+                        value=""
+                        id="importCheck"
+                        checked=""
+                      />
+                      <label
+                        class="inline-block mb-2 ml-1 text-xs font-bold cursor-pointer select-none text-slate-700 dark:text-white/80"
+                        for="importCheck"
+                        >I accept the terms and conditions</label
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-wrap items-center justify-end p-3 border-t border-solid shrink-0 border-slate-100 rounded-b-xl"
+                  >
+                    <button
+                      type="button"
+                      data-toggle="modal"
+                      data-target="#import"
+                      class="inline-block px-8 py-2 m-1 mb-4 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer tracking-tight-rem bg-gradient-to-tl from-slate-600 to-slate-300 bg-150 bg-x-25 hover:-translate-y-px active:-translate-y-px active:opacity-85"
+                    >
+                      Close
+                    </button>
+                    <button
+                      type="button"
+                      class="inline-block px-8 py-2 m-1 mb-4 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer tracking-tight-rem bg-gradient-to-tl from-blue-500 to-violet-500 bg-150 bg-x-25 hover:-translate-y-px active:-translate-y-px active:opacity-85"
+                    >
+                      Upload
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="ps__rail-x" style="left: 0px; bottom: 0px">
+                <div
+                  class="ps__thumb-x"
+                  tabindex="0"
+                  style="left: 0px; width: 0px"
+                ></div>
+              </div>
+              <div class="ps__rail-y" style="top: 0px; right: 0px">
+                <div
+                  class="ps__thumb-y"
+                  tabindex="0"
+                  style="top: 0px; height: 0px"
+                ></div>
+              </div>
+            </div>
+            <button
+              export-button-products=""
+              data-type="csv"
+              class="inline-block px-8 py-2 text-xs font-bold leading-normal text-center text-blue-500 align-middle transition-all ease-in bg-transparent border border-blue-500 border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 tracking-tight-rem bg-150 bg-x-25 hover:-translate-y-px active:-translate-y-px active:shadow-xs hover:text-blue-500 hover:opacity-75 hover:shadow-none active:scale-100 active:border-blue-500 active:bg-blue-500 active:text-white hover:active:border-blue-500 hover:active:bg-transparent hover:active:text-blue-500 hover:active:opacity-75"
+            >
+              Export
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-auto p-6 px-0 pb-0">
+      <div class="overflow-x-auto table-responsive ps">
+        <div
+          class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns"
+        >
+          <div class="dataTable-top">
+            <div class="dataTable-dropdown">
+              <label
+                ><select class="dataTable-selector">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                </select>
+                entries per page</label
+              >
+            </div>
+            <div class="dataTable-search">
+              <input
+                class="dataTable-input focus:shadow-primary-outline dark:text-white/80 ease focus:outline-none focus:transition-shadow"
+                placeholder="Search..."
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="dataTable-container">
+            <table
+              class="table mb-4 dataTable-table"
+              datatable=""
+              id="products-list"
+            >
+              <thead class="thead-light">
+                <tr>
+                  <th data-sortable="" style="width: 37.2719%">
+                    <a href="#" class="dataTable-sorter">Product</a>
+                  </th>
+                  <th data-sortable="" style="width: 11.4313%">
+                    <a href="#" class="dataTable-sorter">Category</a>
+                  </th>
+                  <th data-sortable="" style="width: 8.83766%">
+                    <a href="#" class="dataTable-sorter">Price</a>
+                  </th>
+                  <th data-sortable="" style="width: 11.5274%">
+                    <a href="#" class="dataTable-sorter">SKU</a>
+                  </th>
+                  <th data-sortable="" style="width: 9.51009%">
+                    <a href="#" class="dataTable-sorter">Quantity</a>
+                  </th>
+                  <th data-sortable="" style="width: 13.3525%">
+                    <a href="#" class="dataTable-sorter">Status</a>
+                  </th>
+                  <th data-sortable="" style="width: 8.26129%">
+                    <a href="#" class="dataTable-sorter">Action</a>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="flex">
+                      <div class="block my-auto min-h-6 pl-7">
+                        <input
+                          class="w-5 h-5 ease -ml-7 rounded-1.4 checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-250 after:ease-in-out duration-250 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-150 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
+                          type="checkbox"
+                          id="customCheck1"
+                          checked=""
+                        />
+                      </div>
+                      <img
+                        class="ml-4 w-1/10"
+                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/adidas-hoodie.jpg"
+                        alt="hoodie"
+                      />
+                      <h6 class="my-auto ml-4 dark:text-white">
+                        BKLGO Full Zip Hoodie
+                      </h6>
+                    </div>
+                  </td>
+                  <td class="text-sm leading-normal">Clothing</td>
+                  <td class="text-sm leading-normal">$1,321</td>
+                  <td class="text-sm leading-normal">243598234</td>
+                  <td class="text-sm leading-normal">0</td>
+                  <td>
+                    <span
+                      class="py-1.2 px-2 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-red-700 bg-red-200"
+                      >Out of Stock</span
+                    >
+                  </td>
+                  <td class="text-sm leading-normal">
+                    <a href="javascript:;">
+                      <i
+                        class="fas fa-eye text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                    <a href="javascript:;" class="mx-4">
+                      <i
+                        class="fas fa-user-edit text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                    <a href="javascript:;">
+                      <i
+                        class="fas fa-trash text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="flex">
+                      <div class="block my-auto min-h-6 pl-7">
+                        <input
+                          class="w-5 h-5 ease -ml-7 rounded-1.4 checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-250 after:ease-in-out duration-250 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-150 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
+                          type="checkbox"
+                          id="customCheck2"
+                          checked=""
+                        />
+                      </div>
+                      <img
+                        class="ml-4 w-1/10"
+                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/macbook-pro.jpg"
+                        alt="mac"
+                      />
+                      <h6 class="my-auto ml-4 dark:text-white">MacBook Pro</h6>
+                    </div>
+                  </td>
+                  <td class="text-sm leading-normal">Electronics</td>
+                  <td class="text-sm leading-normal">$1,869</td>
+                  <td class="text-sm leading-normal">877712</td>
+                  <td class="text-sm leading-normal">0</td>
+                  <td>
+                    <span
+                      class="py-1.2 px-2 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-red-700 bg-red-200"
+                      >Out of Stock</span
+                    >
+                  </td>
+                  <td class="text-sm leading-normal">
+                    <a href="javascript:;">
+                      <i
+                        class="fas fa-eye text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                    <a href="javascript:;" class="mx-4">
+                      <i
+                        class="fas fa-user-edit text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                    <a href="javascript:;">
+                      <i
+                        class="fas fa-trash text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="flex">
+                      <div class="block my-auto min-h-6 pl-7">
+                        <input
+                          class="w-5 h-5 ease -ml-7 rounded-1.4 checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-250 after:ease-in-out duration-250 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-150 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
+                          type="checkbox"
+                          id="customCheck3"
+                        />
+                      </div>
+                      <img
+                        class="ml-4 w-1/10"
+                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/metro-chair.jpg"
+                        alt="metro-chair"
+                      />
+                      <h6 class="my-auto ml-4 dark:text-white">
+                        Metro Bar Stool
+                      </h6>
+                    </div>
+                  </td>
+                  <td class="text-sm leading-normal">Furniture</td>
+                  <td class="text-sm leading-normal">$99</td>
+                  <td class="text-sm leading-normal">0134729</td>
+                  <td class="text-sm leading-normal">978</td>
+                  <td>
+                    <span
+                      class="py-1.2 px-2 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-emerald-600 bg-emerald-200"
+                      >in Stock</span
+                    >
+                  </td>
+                  <td class="text-sm leading-normal">
+                    <a href="javascript:;">
+                      <i
+                        class="fas fa-eye text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                    <a href="javascript:;" class="mx-4">
+                      <i
+                        class="fas fa-user-edit text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                    <a href="javascript:;">
+                      <i
+                        class="fas fa-trash text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="flex">
+                      <div class="block my-auto min-h-6 pl-7">
+                        <input
+                          class="w-5 h-5 ease -ml-7 rounded-1.4 checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-250 after:ease-in-out duration-250 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-150 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
+                          type="checkbox"
+                          id="customCheck10"
+                        />
+                      </div>
+                      <img
+                        class="ml-4 w-1/10"
+                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/alchimia-chair.jpg"
+                        alt="alchimia"
+                      />
+                      <h6 class="my-auto ml-4 dark:text-white">
+                        Alchimia Chair
+                      </h6>
+                    </div>
+                  </td>
+                  <td class="text-sm leading-normal">Furniture</td>
+                  <td class="text-sm leading-normal">$2,999</td>
+                  <td class="text-sm leading-normal">113213</td>
+                  <td class="text-sm leading-normal">0</td>
+                  <td>
+                    <span
+                      class="py-1.2 px-2 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-red-700 bg-red-200"
+                      >Out of Stock</span
+                    >
+                  </td>
+                  <td class="text-sm leading-normal">
+                    <a href="javascript:;">
+                      <i
+                        class="fas fa-eye text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                    <a href="javascript:;" class="mx-4">
+                      <i
+                        class="fas fa-user-edit text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                    <a href="javascript:;">
+                      <i
+                        class="fas fa-trash text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="flex">
+                      <div class="block my-auto min-h-6 pl-7">
+                        <input
+                          class="w-5 h-5 ease -ml-7 rounded-1.4 checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-250 after:ease-in-out duration-250 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-150 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
+                          type="checkbox"
+                          id="customCheck5"
+                        />
+                      </div>
+                      <img
+                        class="ml-4 w-1/10"
+                        src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/fendi-coat.jpg"
+                        alt="fendi"
+                      />
+                      <h6 class="my-auto ml-4 dark:text-white">
+                        Fendi Gradient Coat
+                      </h6>
+                    </div>
+                  </td>
+                  <td class="text-sm leading-normal">Clothing</td>
+                  <td class="text-sm leading-normal">$869</td>
+                  <td class="text-sm leading-normal">634729</td>
+                  <td class="text-sm leading-normal">725</td>
+                  <td>
+                    <span
+                      class="py-1.2 px-2 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-emerald-600 bg-emerald-200"
+                      >in Stock</span
+                    >
+                  </td>
+                  <td class="text-sm leading-normal">
+                    <a href="javascript:;">
+                      <i
+                        class="fas fa-eye text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                    <a href="javascript:;" class="mx-4">
+                      <i
+                        class="fas fa-user-edit text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                    <a href="javascript:;">
+                      <i
+                        class="fas fa-trash text-slate-400 dark:text-white/70"
+                      ></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="dataTable-bottom">
+            <div class="dataTable-info">Showing 1 to 5 of 15 entries</div>
+            <nav class="dataTable-pagination">
+              <ul class="dataTable-pagination-list">
+                <li class="pager"><a href="#" data-page="1">‹</a></li>
+                <li class="active"><a href="#" data-page="1">1</a></li>
+                <li class=""><a href="#" data-page="2">2</a></li>
+                <li class=""><a href="#" data-page="3">3</a></li>
+                <li class="pager"><a href="#" data-page="2">›</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="ps__rail-x" style="left: 0px; bottom: 0px">
+          <div
+            class="ps__thumb-x"
+            tabindex="0"
+            style="left: 0px; width: 0px"
+          ></div>
+        </div>
+        <div class="ps__rail-y" style="top: 0px; right: 0px">
+          <div
+            class="ps__thumb-y"
+            tabindex="0"
+            style="top: 0px; height: 0px"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

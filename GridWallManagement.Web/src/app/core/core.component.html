@@ -1,21 +1,21 @@
-<div
-  class="d-flex flex-column flex-root app-root"
-  id="kt_app_root"
-  style="height: 100vh"
->
-  <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
-    <!-- <app-header style="flex-shrink: 0"></app-header> -->
+<div class="d-flex flex-column flex-root app-root" style="height: 100vh">
+  <div class="app-page flex-column flex-column-fluid">
+    <app-header style="flex-shrink: 0"></app-header>
+
     <div
       class="app-wrapper flex-column flex-row-fluid"
       id="kt_app_wrapper"
       style="display: flex; flex: 1"
     >
-      <!-- <app-sidebar style="flex-shrink: 0"></app-sidebar> -->
-      <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
-        <!-- style="padding-bottom: 60px" -->
-        <router-outlet></router-outlet>
-        <!-- style="position: relative; bottom: 0; height: 60px; width: 100%" -->
-        <!-- <app-footer></app-footer> -->
+      <app-sidebar
+        style="flex-shrink: 0; height: 94vh; width: 10vw"
+      ></app-sidebar>
+
+      <div class="app-main flex-column flex-row-fluid" style="width: 90vw">
+        <div class="main" style="height: 88vh">
+          <router-outlet></router-outlet>
+        </div>
+        <app-footer style="height: 5vh"></app-footer>
       </div>
     </div>
   </div>
