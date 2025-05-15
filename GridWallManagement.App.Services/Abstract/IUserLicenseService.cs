@@ -6,6 +6,6 @@ namespace GridWallManagement.App.Services.Abstract
 {
     public interface IUserLicenseService
     {
-        Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync(GetUserLicensesRequest request);
+        Task<PagedResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync(GetUserLicensesRequest request);
     }
 }

@@ -29,7 +29,7 @@ namespace GridWallManagement.App.Api.Controllers
         /// <returns></returns>
         [HttpGet("get-user-licenses")]
         [Authorize(UserRoles.SUPER_ADMIN)]
-        public async Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync([FromQuery] GetUserLicensesRequest request)
+        public async Task<PagedResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync([FromQuery] GetUserLicensesRequest request)
             => await _userLicenseService.GetUserLicensesAsync(request);
     }
 }

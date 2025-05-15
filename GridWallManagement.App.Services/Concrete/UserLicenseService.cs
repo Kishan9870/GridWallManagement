@@ -26,7 +26,7 @@ namespace GridWallManagement.App.Services.Concrete
             _mapper = mapper;
         }
 
-        public async Task<ResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync(GetUserLicensesRequest request)
+        public async Task<PagedResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync(GetUserLicensesRequest request)
         {
             try
             {
@@ -36,11 +36,22 @@ namespace GridWallManagement.App.Services.Concrete
                                                                .GetPage<UserLicenseResponse, UserLicense>(request, this._mapper)
                                                                .ToListAsync();
 
-                return new ResponseBase<List<UserLicenseResponse>>(_mapper.Map<List<UserLicenseResponse>>(userLicenses));
+                if (!userLicenses.Any())
+                    throw new Exception("User licenses not found.");
+
+                var userLicensesCounts = await _userLicenseRepository.GetQueryable().Where(x => x.IsActive).CountAsync();
+
+                var responses = _mapper.Map<List<UserLicenseResponse>>(userLicenses);
+
+                return new PagedResponseBase<List<UserLicenseResponse>>(responses, request.PageNumber, request.PageSize, (int)userLicensesCounts);
             }
             catch (Exception ex)
             {
-                var result = new ResponseBase<List<UserLicenseResponse>>(null);
+                var result = new PagedResponseBase<List<UserLicenseResponse>>(null,
+                                                                              request.PageNumber,
+                                                                              request.PageSize,
+                                                                              0)
+                { ResponseStatusCode = System.Net.HttpStatusCode.UnprocessableContent };
                 result.AddExceptionLog(ex);
                 return result;
             }
