@@ -18,7 +18,7 @@ namespace GridWallManagement.App.Api.Infrastructure.Attributes
         {
             var user = (Users)context.HttpContext.Items["User"];
 
-            if (user == null || user.Roles == null || user.Roles.IsActive || !_roles.Contains(user.Roles.Name))
+            if (user == null || user.Roles == null || !user.Roles.IsActive || !_roles.Contains(user.Roles.Name))
             {
                 // not logged in or role not authorized
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };

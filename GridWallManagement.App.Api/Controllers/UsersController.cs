@@ -20,6 +20,7 @@ namespace GridWallManagement.App.Api.Controllers
             _usersService = usersService;
         }
 
+
         /// <summary>
         /// Get async
         /// </summary>
