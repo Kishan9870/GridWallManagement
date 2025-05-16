@@ -6,6 +6,6 @@ namespace GridWallManagement.App.Services.Abstract
 {
     public interface IRolesService
     {
-        Task<ResponseBase<List<RolesResponse>>> GetAsync(GetRolesRequest request);
+        Task<PagedResponseBase<List<RolesResponse>>> GetAsync(GetRolesRequest request);
     }
 }

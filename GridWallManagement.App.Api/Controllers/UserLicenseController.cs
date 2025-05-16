@@ -5,6 +5,7 @@ using GridWallManagement.App.Models.Request.UserLicense;
 using GridWallManagement.App.Models.Response.UserLicense;
 using GridWallManagement.App.Services.Abstract;
 using GridWallManagement.App.Services.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GridWallManagement.App.Api.Controllers
@@ -28,7 +29,7 @@ namespace GridWallManagement.App.Api.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpGet("get-user-licenses")]
-        [Authorize(UserRoles.SUPER_ADMIN)]
+        [Microsoft.AspNetCore.Authorization.Authorize(UserRoles.SUPER_ADMIN)]
         public async Task<PagedResponseBase<List<UserLicenseResponse>>> GetUserLicensesAsync([FromQuery] GetUserLicensesRequest request)
             => await _userLicenseService.GetUserLicensesAsync(request);
     }
