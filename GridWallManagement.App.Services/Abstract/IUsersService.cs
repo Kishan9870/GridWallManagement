@@ -6,6 +6,6 @@ namespace GridWallManagement.App.Services.Abstract
 {
     public interface IUsersService
     {
-        Task<ResponseBase<List<UserResponse>>> GetAsync(GetUsersRequest request);
+        Task<PagedResponseBase<List<UserResponse>>> GetAsync(GetUsersRequest request);
     }
 }

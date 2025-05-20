@@ -16,6 +16,7 @@ namespace GridWallManagement.App.Services.Common
             services.AddScoped<IUserContext, UserContext>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUtilityService, UtilityService>();
+            services.AddScoped<ILogsService, LogsService>();
 
             services.RegisterRepository();
             return services;

@@ -27,7 +27,7 @@ namespace GridWallManagement.App.Api.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpGet("get-async")]
-        public async Task<ResponseBase<List<UserResponse>>> GetAsync([FromQuery] GetUsersRequest request)
+        public async Task<PagedResponseBase<List<UserResponse>>> GetAsync([FromQuery] GetUsersRequest request)
             => await _usersService.GetAsync(request);
     }
 }

@@ -16,5 +16,7 @@ namespace GridWallManagement.App.Database.DBContexts
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<UserLicense> UserLicenses { get; set; }
         public DbSet<UserLicenseRenewal> UserLicenseRenewals { get; set; }
+        public DbSet<ExceptionLog> ExceptionLogs { get; set; }
+        public DbSet<ApplicationUserLog> ApplicationUserLogs { get; set; }
     }
 }

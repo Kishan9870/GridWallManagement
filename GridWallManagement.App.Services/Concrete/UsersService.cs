@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Net;
+using AutoMapper;
 using GridWallManagement.App.Database.Entities;
 using GridWallManagement.App.Models.Request.User;
 using GridWallManagement.App.Models.Response.User;
@@ -26,20 +27,27 @@ namespace GridWallManagement.App.Services.Concrete
             _mapper = mapper;
         }
 
-        public async Task<ResponseBase<List<UserResponse>>> GetAsync(GetUsersRequest request)
+        public async Task<PagedResponseBase<List<UserResponse>>> GetAsync(GetUsersRequest request)
         {
             try
             {
-                var users = await _usersRepository.GetQueryable()
-                                                  .Where(x => x.IsActive)
-                                                  .GetPage<UserResponse, Users>(request, this._mapper)
-                                                  .ToListAsync();
+                var query = _usersRepository.GetQueryable()
+                                                  .Where(x => x.IsActive);
+                //.GetPage<UserResponse, Users>(request, this._mapper)
+                //.ToListAsync();
 
-                return new ResponseBase<List<UserResponse>>(_mapper.Map<List<UserResponse>>(users));
+                var totalCount = await query.CountAsync();
+                var pagedQuery = query.GetPage<UserResponse, Users>(request, _mapper);
+                var users = await pagedQuery.ToListAsync();
+
+                var mappedUsers = _mapper.Map<List<UserResponse>>(users);
+
+                return new PagedResponseBase<List<UserResponse>>(mappedUsers, request.PageNumber, request.PageSize, totalCount);
             }
             catch (Exception ex)
             {
-                var result = new ResponseBase<List<UserResponse>>(null);
+                var result = new PagedResponseBase<List<UserResponse>>(null, request.PageNumber, request.PageSize, 0);
+                result.ResponseStatusCode = HttpStatusCode.UnprocessableContent;
                 result.AddExceptionLog(ex);
                 return result;
             }
